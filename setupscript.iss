@@ -59,11 +59,11 @@ Source: "C:\Documents and Settings\Owner\workspace\Lexcess\src\dist\tcl\*"; Dest
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
-Name: "{group}\Lexcess"; Filename: "{app}\Lexcess.exe"
+Name: "{group}\Lexcess"; Filename: "{app}\Lexcess.exe"; WorkingDir: "{app}"
 Name: "{group}\Lexcess Website"; Filename: "http://www.bensonbasement.com/games/lexcess/"
 Name: "{group}\{cm:UninstallProgram,Lexcess}"; Filename: "{uninstallexe}"
-Name: "{commondesktop}\Lexcess"; Filename: "{app}\Lexcess.exe"; Tasks: desktopicon
+Name: "{commondesktop}\Lexcess"; Filename: "{app}\Lexcess.exe"; WorkingDir: "{app}"; Tasks: desktopicon
 
 [Run]
-Filename: "{app}\Lexcess.exe"; Description: "{cm:LaunchProgram,Lexcess}"; Flags: nowait postinstall skipifsilent
+Filename: "{app}\Lexcess.exe"; WorkingDir: "{app}"; Description: "{cm:LaunchProgram,Lexcess}"; Flags: nowait postinstall skipifsilent
 
