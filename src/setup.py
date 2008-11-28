@@ -19,11 +19,20 @@
 from distutils.core import setup
 import py2exe
 
-setup(windows = [{"script": "lexcess_gui.py","icon_resources": [(1, "lexcess.ico")]}],
+setup(windows = [{"script": "lexcess_gui.py","icon_resources": [(1, "lexcessicon.ico")]}],
       author="Garrison Benson",
       author_email="benson.garrison@gmail.com",
-      url="http://www.bensonbasement.com",
+      url="http://www.bensonbasement.com/games/lexcess/",
       data_files=[('.', ["buzzer.wav",
                          "ding.wav",
-                         "wordset.dat"
+                         "hightone.wav",
+                         "lowtone.wav",
+                         "gameover.wav",
+                         "about.txt",
+                         "gpl.txt",
+                         "wordset.dat",
+                         "lexcessicon.ico",
+                         "help.html",
+                         "screenshot.png"
                          ])])
+

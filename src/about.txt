@@ -1,6 +1,6 @@
 Lexcess v0.9
 Copyright 2008 Garrison Benson
-http://www.bensonbasement.com/games/lexcess
+http://www.bensonbasement.com/games/lexcess/
 
 Source code available at:
 http://code.google.com/p/lexcess/

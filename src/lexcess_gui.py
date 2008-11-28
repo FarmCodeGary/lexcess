@@ -20,9 +20,8 @@ from __future__ import with_statement
 from Tkinter import *
 import tkMessageBox
 from winsound import *
-import webbrowser
+import webbrowser,os
 import scorewindow
-import tkSimpleDialog
 
 from lexcess import *
 
@@ -90,6 +89,7 @@ class LexcessWindow:
         menubar.add_cascade(label="Sound", menu=soundMenu)
         
         helpMenu = Menu(menubar,tearoff=0)
+        helpMenu.add_command(label="How to Play",command=self.showHelp)
         helpMenu.add_command(label="Website",command=self.showWebsite)
         helpMenu.add_command(label="About",command=self.showAbout)
         menubar.add_cascade(label="Help", menu=helpMenu)
@@ -132,8 +132,12 @@ class LexcessWindow:
         self.toneToggle = False
         #self.game.start()
     
+    def showHelp(self):
+        path = "file://" + os.getcwd() + "\\help.html"
+        webbrowser.open_new_tab(path)
+    
     def showWebsite(self):
-        webbrowser.open_new_tab("http://www.bensonbasement.com")
+        webbrowser.open_new_tab("http://www.bensonbasement.com/games/lexcess")
     
     def showAbout(self):
         tkMessageBox.showinfo("About Lexcess",ABOUTMESSAGE)
@@ -226,7 +230,6 @@ class LexcessWindow:
         return ''.join(result)
     
     def getName(self):
-        #return tkSimpleDialog.askstring("High Score!","Enter your name",parent=self.frame)
         return scorewindow.NamePrompter(self.master,title="High Score!").result
     
     def addTimedEvent(self,ms,funct):
@@ -242,6 +245,6 @@ class LexcessWindow:
         self.playSound(LOSESOUND)
 
 root = Tk()
-root.iconbitmap(default="lexcess.ico")
+root.iconbitmap(default="lexcessicon.ico")
 app = LexcessWindow(root)
 root.mainloop()

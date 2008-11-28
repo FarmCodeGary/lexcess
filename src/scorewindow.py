@@ -17,7 +17,6 @@
 
 from Tkinter import *
 from tkSimpleDialog import Dialog
-import Tix
 
 HEADINGFONT = ("Helvetica","10","bold")
 SCOREFONT = ("Helvetica","10")
