@@ -1,4 +1,4 @@
-How to Play WORDUCTION:
+How to Play LEXCESS:
 
 Letters will appear on the screen one by one. Form words to score points! The farther you get, the faster the letters will come. When the screen fills up with letters, you lose!
 
@@ -6,4 +6,4 @@ Scoring:
 Each time you type a word, your score will increase by the number of letters squared. In other words, 3-letter words are worth 9 points, 4-letter words are worth 16 points, 5-letter words are worth 25 points, etc. Make big words for big points!
 
 Clearing the High Scores:
-To clear the high scores, enter the Worduction application directory (default: "C:\Program Files\Worduction" and delete the "scores.dat" file.
+To clear the high scores, enter the Lexcess application directory (default: "C:\Program Files\Lexcess" and delete the "scores.dat" file.

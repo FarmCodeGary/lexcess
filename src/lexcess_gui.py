@@ -1,3 +1,21 @@
+# Copyright 2008 Garrison Benson
+#
+#    This file is part of Lexcess.
+#
+#    Lexcess is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    Lexcess is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with Lexcess.  If not, see <http://www.gnu.org/licenses/>.
+
+
 from __future__ import with_statement
 from Tkinter import *
 import tkMessageBox
@@ -8,7 +26,9 @@ import tkSimpleDialog
 
 from lexcess import *
 
-ABOUTMESSAGE = u"Lexcess v0.5\n\u00A9 2008 Garrison Benson\n\nhttp://www.bensonbasement.com"
+ABOUTMESSAGE = "Error: Cannot find about.txt."
+with open("about.txt") as f:
+    ABOUTMESSAGE = f.read()
 
 LETTERFONT = ("Courier","16","bold")
 INPUTFONT = ("Helvetica","18")
@@ -222,5 +242,6 @@ class LexcessWindow:
         self.playSound(LOSESOUND)
 
 root = Tk()
+root.iconbitmap(default="lexcess.ico")
 app = LexcessWindow(root)
 root.mainloop()
