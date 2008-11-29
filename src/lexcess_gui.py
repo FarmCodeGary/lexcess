@@ -25,15 +25,20 @@ from lexcess import *
 try:
     from winsound import PlaySound,SND_ASYNC
     sound = True
-    print "Sound found!"
 except ImportError:
     sound = False
 
 
 
-ABOUTMESSAGE = "Error: Cannot find about.txt."
-with open("about.txt") as f:
+
+try:
+    f = open("about.txt")
     ABOUTMESSAGE = f.read()
+except IOError:
+    ABOUTMESSAGE = "Error: Cannot find about.txt."
+finally:
+    f.close()
+
 
 LETTERFONT = ("Courier","16","bold")
 INPUTFONT = ("Helvetica","18")
