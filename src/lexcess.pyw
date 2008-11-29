@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 # Copyright 2008 Garrison Benson
 #
 #    This file is part of Lexcess.
@@ -121,20 +123,7 @@ class LexcessWindow:
         self.newGame()
         self.updateGame()
     
-    def loadConfig(self):
-        try:
-            f = open("config.dat")
-            effects,music = pickle.load(f)
-            f.close()
-            self.effectsOn.set(effects)
-            self.musicOn.set(music)
-        except IOError:
-            self.effectsOn.set(1)
-            self.musicOn.set(1)
-            
-    def saveConfig(self):
-        with open("config.dat",'w') as f:
-            pickle.dump((self.effectsOn.get(),self.musicOn.get()),f)
+
         
     
     def newGame(self):
@@ -233,10 +222,28 @@ class LexcessWindow:
                 else:
                     PlaySound(LOWTONE,SND_ASYNC)
             self.toneToggle = not self.toneToggle
-    else:
+        def loadConfig(self):
+            try:
+                f = open("config.dat")
+                effects,music = pickle.load(f)
+                f.close()
+                self.effectsOn.set(effects)
+                self.musicOn.set(music)
+            except IOError:
+                self.effectsOn.set(1)
+                self.musicOn.set(1)
+                
+        def saveConfig(self):
+            with open("config.dat",'w') as f:
+                pickle.dump((self.effectsOn.get(),self.musicOn.get()),f)
+    else: # No sound
         def playEffect(self,filename):
             pass
         def playTone(self):
+            pass
+        def saveConfig(self):
+            pass
+        def loadConfig(self):
             pass
     
     def makeMessage(self,message):

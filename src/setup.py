@@ -19,7 +19,7 @@
 from distutils.core import setup
 import py2exe
 
-setup(windows = [{"script": "lexcess_gui.py","icon_resources": [(1, "lexcessicon.ico")]}],
+setup(windows = [{"script": "lexcess.pyw","icon_resources": [(1, "lexcessicon.ico")]}],
       author="Garrison Benson",
       author_email="benson.garrison@gmail.com",
       url="http://www.bensonbasement.com/games/lexcess/",
