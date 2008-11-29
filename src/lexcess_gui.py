@@ -23,7 +23,7 @@ import scorewindow
 from lexcess import *
 
 try:
-    from winsoundx import PlaySound,SND_ASYNC
+    from winsound import PlaySound,SND_ASYNC
     sound = True
     print "Sound found!"
 except ImportError:
