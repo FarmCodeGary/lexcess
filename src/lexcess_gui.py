@@ -18,12 +18,18 @@
 
 from __future__ import with_statement
 from Tkinter import *
-import tkMessageBox
-from winsound import *
-import webbrowser,os
+import tkMessageBox,webbrowser,os
 import scorewindow
-
 from lexcess import *
+
+try:
+    from winsoundx import PlaySound,SND_ASYNC
+    sound = True
+    print "Sound found!"
+except ImportError:
+    sound = False
+
+
 
 ABOUTMESSAGE = "Error: Cannot find about.txt."
 with open("about.txt") as f:
@@ -83,10 +89,11 @@ class LexcessWindow:
         gameMenu.add_command(label="Quit",command=master.destroy)
         menubar.add_cascade(label="Game", menu=gameMenu)
         
-        soundMenu = Menu(menubar,tearoff=0)
-        soundMenu.add_checkbutton(label="Effects",variable=self.effectsOn)
-        soundMenu.add_checkbutton(label="Music",variable=self.musicOn)
-        menubar.add_cascade(label="Sound", menu=soundMenu)
+        if sound:
+            soundMenu = Menu(menubar,tearoff=0)
+            soundMenu.add_checkbutton(label="Effects",variable=self.effectsOn)
+            soundMenu.add_checkbutton(label="Music",variable=self.musicOn)
+            menubar.add_cascade(label="Sound", menu=soundMenu)
         
         helpMenu = Menu(menubar,tearoff=0)
         helpMenu.add_command(label="How to Play",command=self.showHelp)
@@ -154,9 +161,9 @@ class LexcessWindow:
     def tryWord(self,event=None):
         success = self.game.enterWord(self.typedWord.get())
         if success:
-            self.playSound(GOODSOUND)
+            self.playEffect(GOODSOUND)
         else:
-            self.playSound(BADSOUND)
+            self.playEffect(BADSOUND)
         self.typedWord.set("")
         self.updateGame()
     
@@ -209,17 +216,23 @@ class LexcessWindow:
     def focusEntry(self):
         self.wordBox.focus_set()
     
-    def playSound(self,filename):
-        if self.effectsOn.get():
-            PlaySound(filename,SND_ASYNC)
-            
-    def playTone(self):
-        if self.musicOn.get():
-            if self.toneToggle:
-                PlaySound(HIGHTONE,SND_ASYNC)
-            else:
-                PlaySound(LOWTONE,SND_ASYNC)
-        self.toneToggle = not self.toneToggle
+    if sound:
+        def playEffect(self,filename):
+            if self.effectsOn.get():
+                PlaySound(filename,SND_ASYNC)
+                
+        def playTone(self):
+            if self.musicOn.get():
+                if self.toneToggle:
+                    PlaySound(HIGHTONE,SND_ASYNC)
+                else:
+                    PlaySound(LOWTONE,SND_ASYNC)
+            self.toneToggle = not self.toneToggle
+    else:
+        def playEffect(self,filename):
+            pass
+        def playTone(self):
+            pass
     
     def makeMessage(self,message):
         result = ["-"]*MAXLETTERS
@@ -242,7 +255,7 @@ class LexcessWindow:
         scorewindow.ScoreWindow(self.master,SCORELIST,SCORECOLS,highlighted)
         
     def endGameSound(self):
-        self.playSound(LOSESOUND)
+        self.playEffect(LOSESOUND)
 
 root = Tk()
 root.iconbitmap(default="lexcessicon.ico")
