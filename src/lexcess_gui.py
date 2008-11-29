@@ -20,7 +20,7 @@ from __future__ import with_statement
 from Tkinter import *
 import tkMessageBox,webbrowser,os
 import scorewindow
-from lexcess import *
+from lexcess_game import *
 
 try:
     from winsound import PlaySound,SND_ASYNC
