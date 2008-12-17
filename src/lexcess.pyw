@@ -20,7 +20,7 @@
 
 from __future__ import with_statement
 from Tkinter import *
-import tkMessageBox,webbrowser,os
+import tkMessageBox,webbrowser,os,platform
 import scorewindow
 from lexcess_game import *
 
@@ -270,6 +270,14 @@ class LexcessWindow:
         self.playEffect(LOSESOUND)
 
 root = Tk()
-root.iconbitmap(default="lexcessicon.ico")
+
+
+system = platform.system()
+if system == 'Windows':
+    root.iconbitmap("lexcessicon.ico")
+elif system == 'Linux':
+    #print "@"+os.getcwd()+"/lexcessicon.xbm"
+    root.iconbitmap("@"+os.getcwd()+"/lexcessicon.xbm")
+    pass
 app = LexcessWindow(root)
 root.mainloop()
